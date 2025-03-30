@@ -2,10 +2,6 @@
 
 Simple REST API with Fiber (Golang)
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
 ## MakeFile
 
 Run build make command with tests
@@ -52,8 +48,51 @@ Public Endpoint:
 curl http://localhost:8080/public
 ```
 
+```bash
+{
+ "message": "This is a public endpoint"
+}
+```
+
 Protected Endpoint:
 
 ```bash
 curl http://localhost:8080/protected -H "Authorization: Bearer mySecretTok3n"
+```
+
+response:
+
+```bash
+{
+ 	"message": "This is a protected endpoint.",
+	"userID":  123,
+}
+```
+
+request:
+
+```bash
+curl http://localhost:8080/protected
+```
+
+response:
+
+```bash
+{
+    "error":"Missing Authorization header"
+}
+```
+
+request:
+
+```bash
+curl http://localhost:8080/protected -H "Authorization: Bearer myS"
+```
+
+response:
+
+```bash
+{
+ 	"message":"Invalid token"
+}
 ```
